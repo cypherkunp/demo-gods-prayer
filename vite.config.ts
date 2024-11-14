@@ -9,8 +9,10 @@ declare module "@remix-run/node" {
 }
 
 export default defineConfig({
+  base: "/demo-gods-prayer/",
   plugins: [
     remix({
+      basename: "/demo-gods-prayer/",
       ssr: false,
       future: {
         v3_fetcherPersist: true,

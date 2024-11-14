@@ -29,12 +29,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: pnpm/action-setup@v4
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install & Build
         run: |
-          pnpm install
+          pnpm install --frozen-lockfile
           pnpm build
       - name: Setup Pages
         uses: actions/configure-pages@v5

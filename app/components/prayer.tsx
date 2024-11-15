@@ -75,6 +75,7 @@ export default function Prayer() {
     }
     setShowConfetti(true);
     setBlessingsGranted(true);
+    setDisablePlay(true);
     setTimeout(() => setShowConfetti(false), 5000);
   };
 
@@ -148,6 +149,7 @@ export default function Prayer() {
                     variant="ghost"
                     className="h-16 w-16 text-white bg-purple-600 hover:bg-purple-700 rounded-full"
                     onClick={togglePlay}
+                    disabled={disablePlay}
                   >
                     {isPlaying ? (
                       <Pause className="h-8 w-8" />

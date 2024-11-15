@@ -8,6 +8,7 @@ import {
 import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
+import LoadingIndicator from "~/components/loading-indicator";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -20,7 +21,11 @@ export const links: LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
-  { rel: "fevicon", href: "/demo-gods-prayer/favicon.ico" },
+  {
+    rel: "fevicon",
+    href: "favicon.ico",
+    type: "image/x-icon",
+  },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -46,5 +51,5 @@ export default function App() {
 }
 
 export function HydrateFallback() {
-  return <p>Loading...</p>;
+  return <LoadingIndicator />;
 }

@@ -22,6 +22,7 @@ export default function Prayer() {
   const receiveBlessings = useCallback(() => {
     setShowConfetti(true);
     setBlessingsGranted(true);
+    setIsPlaying(false);
     setTimeout(() => setShowConfetti(false), 5000);
   }, []);
 
@@ -66,6 +67,7 @@ export default function Prayer() {
 
               <AudioPlayer
                 audioSrc="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/A%20Prayer%20to%20the%20Demo%20Gods-AOhjTdPNWKzqKEx4CgOUmKKu0I5xd9.mp3"
+                isPlaying={isPlaying}
                 onPlayStateChange={handlePlayStateChange}
               />
             </div>
@@ -77,6 +79,7 @@ export default function Prayer() {
               onReceiveBlessings={receiveBlessings}
             />
           </AnimatePresence>
+          <Footnote />
         </div>
         {/* Lyrics Container */}
         <motion.div

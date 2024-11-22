@@ -3,14 +3,19 @@ import { Play, Pause, SkipBack, SkipForward, Volume2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "~/components/ui/button";
 import { Slider } from "~/components/ui/slider";
+import { RenderIf } from "./render-if";
 
 interface AudioPlayerProps {
   audioSrc: string;
+  isPlaying: boolean;
   onPlayStateChange: (isPlaying: boolean) => void;
 }
 
-const AudioPlayer = ({ audioSrc, onPlayStateChange }: AudioPlayerProps) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+const AudioPlayer = ({
+  audioSrc,
+  isPlaying,
+  onPlayStateChange,
+}: AudioPlayerProps) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
@@ -32,17 +37,15 @@ const AudioPlayer = ({ audioSrc, onPlayStateChange }: AudioPlayerProps) => {
     };
   }, [audioSrc]);
 
-  const togglePlay = useCallback(() => {
+  useEffect(() => {
     if (audioRef.current) {
-      if (isPlaying) {
+      if (!isPlaying) {
         audioRef.current.pause();
       } else {
         audioRef.current.play();
       }
-      setIsPlaying(!isPlaying);
-      onPlayStateChange(!isPlaying);
     }
-  }, [isPlaying, onPlayStateChange]);
+  }, [isPlaying]);
 
   const handleTimeChange = useCallback((value: number[]) => {
     if (audioRef.current) {
@@ -73,7 +76,7 @@ const AudioPlayer = ({ audioSrc, onPlayStateChange }: AudioPlayerProps) => {
           max={duration}
           step={1}
           onValueChange={handleTimeChange}
-          className="w-full"
+          className="w-full dark"
         />
         <div className="flex justify-between text-sm text-gray-400">
           <span>{formatTime(currentTime)}</span>
@@ -82,19 +85,21 @@ const AudioPlayer = ({ audioSrc, onPlayStateChange }: AudioPlayerProps) => {
       </div>
 
       <div className="flex justify-center items-center gap-6">
-        <Button
-          size="icon"
-          variant="ghost"
-          className="text-gray-400 hover:text-white"
-        >
-          <SkipBack className="h-6 w-6" />
-        </Button>
+        <RenderIf condition={false}>
+          <Button
+            size="icon"
+            variant="ghost"
+            className="text-gray-400 hover:text-white"
+          >
+            <SkipBack className="h-6 w-6" />
+          </Button>
+        </RenderIf>
         <motion.div whileTap={{ scale: 0.95 }}>
           <Button
             size="icon"
             variant="ghost"
             className="h-16 w-16 text-white bg-purple-600 hover:bg-purple-700 rounded-full"
-            onClick={togglePlay}
+            onClick={() => onPlayStateChange(!isPlaying)}
           >
             {isPlaying ? (
               <Pause className="h-8 w-8" />
@@ -103,13 +108,15 @@ const AudioPlayer = ({ audioSrc, onPlayStateChange }: AudioPlayerProps) => {
             )}
           </Button>
         </motion.div>
-        <Button
-          size="icon"
-          variant="ghost"
-          className="text-gray-400 hover:text-white"
-        >
-          <SkipForward className="h-6 w-6" />
-        </Button>
+        <RenderIf condition={false}>
+          <Button
+            size="icon"
+            variant="ghost"
+            className="text-gray-400 hover:text-white"
+          >
+            <SkipForward className="h-6 w-6" />
+          </Button>
+        </RenderIf>
       </div>
 
       <div className="flex items-center gap-2">
@@ -119,7 +126,7 @@ const AudioPlayer = ({ audioSrc, onPlayStateChange }: AudioPlayerProps) => {
           max={1}
           step={0.01}
           onValueChange={handleVolumeChange}
-          className="w-full"
+          className="w-full dark"
         />
       </div>
     </div>

@@ -20,7 +20,7 @@ const BlessingsCard = ({
         exit={{ opacity: 0, y: -50 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="p-8 flex flex-col items-center space-y-6">
+        <div className="px-8 py-[28px] flex flex-col items-center space-y-6">
           <h2 className="text-3xl md:text-4xl font-bold text-white text-center">
             Prayer for the Demo Gods
           </h2>
@@ -38,16 +38,16 @@ const BlessingsCard = ({
   return (
     <motion.div
       key="granted"
-      className="w-full bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-700 md:min-h-[170px]"
+      className="w-full bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-700 "
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="p-8 flex flex-col items-start space-y-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center">
+      <div className="px-8 py-[34px] flex flex-col items-center justify-center space-y-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-white">
           Demo Blessings Granted!
         </h2>
-        <p className="text-purple-400 font-light ">*Conditions Apply</p>
+        <p className="text-purple-400 font-light">*Conditions Apply</p>
       </div>
     </motion.div>
   );

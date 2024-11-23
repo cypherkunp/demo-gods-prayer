@@ -11,7 +11,8 @@ const Lyrics = () => {
   ];
 
   return (
-    <div className="p-8 space-y-6 text-gray-300 text-lg leading-relaxed">
+    <div className="p-6 space-y-4 text-gray-300 text-lg leading-relaxed">
+      <h2 className="text-3xl font-bold">Hymn</h2>
       {lyrics.map((stanza, index) => (
         <motion.p
           key={index}

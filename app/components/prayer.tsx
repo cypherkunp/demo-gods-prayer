@@ -31,6 +31,7 @@ export default function Prayer() {
       <AnimatePresence>
         {showConfetti && (
           <ReactConfetti
+            className="absolute top-0 left-0 w-full h-full"
             width={window.innerWidth}
             height={window.innerHeight}
             colors={["#8B5CF6", "#7C3AED", "#6D28D9", "#5B21B6"]}
@@ -40,7 +41,7 @@ export default function Prayer() {
         )}
       </AnimatePresence>
 
-      <div className="w-full max-w-6xl flex flex-col lg:flex-row gap-6 items-start relative z-10">
+      <div className="w-full max-w-6xl flex flex-col lg:flex-row gap-6 items-start relative ">
         <div className="w-full lg:w-1/2 space-y-4">
           {/* Music Player */}
           <motion.div
